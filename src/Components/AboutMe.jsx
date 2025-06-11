@@ -6,7 +6,7 @@ const AboutMe = () => {
       id="about"
       className="mt-28 text-white px-16 gap-10 w-full flex flex-col items-center justify-center"
     >
-      <h1 className="text-2xl">
+      <h1 className="text-2xl font-bold">
         About <span className="text-[#ed072a]">Me</span>
       </h1>
       <div className=" w-full grid grid-cols-1 md:grid-cols-2 space-x-4 gap-16">
@@ -51,10 +51,10 @@ const AboutMe = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-chevrons-left-right-icon lucide-chevrons-left-right"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-chevrons-left-right-icon lucide-chevrons-left-right"
               >
                 <path d="m9 7-5 5 5 5" />
                 <path d="m15 7 5 5-5 5" />
@@ -77,10 +77,10 @@ const AboutMe = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-folder-kanban-icon lucide-folder-kanban"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-folder-kanban-icon lucide-folder-kanban"
               >
                 <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 <path d="M8 10v4" />
@@ -105,10 +105,10 @@ const AboutMe = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-brain-icon lucide-brain"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-brain-icon lucide-brain"
               >
                 <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                 <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
