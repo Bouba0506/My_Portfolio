@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+// import emailjs from '@emailjs/browser';
 
 const ContactSec = () => {
-  return (
+
+//  const [name, setName] = useState("");
+//  const [email, setEmail] = useState("");
+//  const [message, setMessage] = useState("");
+
+//  const handleSubmit=(e)=>{
+//   e.preventDefault();
+
+//   const serviceId='service_kk8oaup';
+//   const templateId='template_gl1ty45';
+//   const publicKey='_rNn5IEkWwKYVICfA';
+
+//  const templateParams={
+//   from_name:name,
+//   from_email:email,
+//   to_name:'Portfolio',
+//   from_message:message
+//  };
+
+//  emailjs.send(serviceId,templateId,templateParams,publicKey)
+//  .then((reponse)=>{
+//   console.log('Email sent successfully',reponse);
+//   setName('');
+//   setEmail('');
+//   setMessage('');
+//  }).catch((erro)=>{
+//   console.log('Error sending email',erro);
+//  });
+ 
+//  };
+
+  
+  
+return (
     <section
       id="contact"
       className="mt-28 text-white px-16 gap-10 w-full flex flex-col items-center justify-center"
@@ -14,7 +48,7 @@ const ContactSec = () => {
         and collaborations, <br /> so feel free to reach out to me on any of the
         following platforms.
       </p>
-      <div className="w-full lg:flex  items-center justify-center gap-10 relative">
+      <div className="w-full lg:flex items-center justify-center gap-10 relative">
         {/* leftform */}
         <div className="lg:w-1/3 lg:mb-0 mb-3 flex flex-col space-y-5">
           <div className="flex items-center gap-2">
@@ -37,7 +71,7 @@ const ContactSec = () => {
             </span>
             <div className="flex flex-col justify-center">
               <h1 className="font-semibold">Email</h1>
-              <p className="text-xs">Bouba.Sisu@proton.me</p>
+              <a href="mailto:Bouba.Sisu@proton.me" className="text-xs">Bouba.Sisu@proton.me</a>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -52,7 +86,7 @@ const ContactSec = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                class="lucide lucide-phone-icon lucide-phone"
+                className="lucide lucide-phone-icon lucide-phone"
               >
                 <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
               </svg>
@@ -144,14 +178,16 @@ const ContactSec = () => {
           </div>
         </div>
         {/* rightform */}
-        <div className="flex flex-col space-y-3 justify-center items-center rounded-lg shadow-xl bg-[#542d3371] p-4 ">
+        <div className="flex flex-col space-y-3 justify-center w-1/3 items-center rounded-lg shadow-xl bg-[#542d3371] p-4 ">
           <h1 className="text-xl font-semibold">Send a Message</h1>
-          <form className="flex flex-col space-y-2">
+          <form className="flex flex-col space-y-2" action="https://formspree.io/f/mrbkljrn"
+  method="POST" >
             <div className="flex flex-col space-y-2  p-2 text-white">
               <label className="text-sm text-center">Your Name</label>
               <input
                 type="text"
                 placeholder="Bah Boubacar"
+                name="name"
                 className="w-full p-2 bg-[#0f141a5e] rounded-lg outline-none "
               />
             </div>
@@ -160,18 +196,22 @@ const ContactSec = () => {
               <input
                 type="text"
                 placeholder="Email@example.com"
+                name="email"
                 className="w-full p-2 bg-[#0f141a5e] rounded-lg outline-none "
+              
               />
             </div>
             <div className="flex flex-col space-y-2  p-2 text-white">
               <label className="text-sm text-center">Your Message</label>
               <textarea
                 placeholder="Message"
+                name="message"
                 className="w-full rounded-lg bg-[#0f141a5e] p-2 text-white"
+               
               ></textarea>
             </div>
 
-            <button className="bg-[#9b061c] rounded-lg flex items-center text-xl p-2 justify-center">
+            <button type="submit" className="bg-[#9b061c] rounded-lg flex items-center text-xl p-2 justify-center">
               Send
             </button>
           </form>

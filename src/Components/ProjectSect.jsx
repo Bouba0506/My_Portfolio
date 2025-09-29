@@ -5,28 +5,28 @@ const projects = [
     img: turbo,
     skill: ["React", "Tailwindcss"],
     titre: "this is a project description",
-    hrefgithub:"#",
+    hrefgithub:"https://github.com/Bouba0506",
     hrefweb:"#"
   },
   {
     img: turbo,
     skill: ["Nextjs", "Tailwindcss"],
     titre: "this is a project description",
-    hrefgithub:"#",
+    hrefgithub:"https://github.com/Bouba0506",
     hrefweb:"#"
   },
   {
     img: turbo,
     skill: ["React", "Tailwindcss"],
     titre: "this is a project description",
-    hrefgithub:"#",
+    hrefgithub:"https://github.com/Bouba0506",
     hrefweb:"#"
   },
   {
     img: turbo,
     skill: ["Nextjs", "Tailwindcss"],
     titre: "this is a project description",
-    hrefgithub:"#",
+    hrefgithub:"https://github.com/Bouba0506",
     hrefweb:"#"
   },
 ];

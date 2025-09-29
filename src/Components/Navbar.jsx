@@ -81,7 +81,7 @@ export const Navbar = () => {
       {/* icons social media */}
       <div className="md:flex items-center space-x-3 hidden">
         <a
-          href="#"
+          href="https://github.com/Bouba0506"
           className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
         >
           <svg
@@ -101,7 +101,7 @@ export const Navbar = () => {
           </svg>
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/boubacar-bah-a5b849278/"
           className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
         >
           <svg
@@ -122,7 +122,7 @@ export const Navbar = () => {
           </svg>
         </a>
         <a
-          href="#"
+          href="https://www.instagram.com/bouba_bah224/"
           className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
         >
           <svg

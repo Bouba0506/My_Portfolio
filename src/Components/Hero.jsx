@@ -34,7 +34,7 @@ const Hero = () => {
         <div className="flex items-center mt-6 space-x-4">
           <div className="flex items-center space-x-2">
             <a
-              href="#"
+              href="https://github.com/Bouba0506"
               className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
             >
               <svg
@@ -54,7 +54,7 @@ const Hero = () => {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/boubacar-bah-a5b849278/"
               className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
             >
               <svg
@@ -75,7 +75,7 @@ const Hero = () => {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/bouba_bah224/"
               className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
             >
               <svg
