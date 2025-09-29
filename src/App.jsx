@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound"
-import {Navbar} from "../Components/Navbar"
+import Home from "@pages/Home";
+import NotFound from "@pages/NotFound"
+import {Navbar} from "@Components/Navbar"
 
 function App() {
   return (

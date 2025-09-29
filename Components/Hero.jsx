@@ -1,6 +1,6 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import blue from "../src/assets/images/Blue.png";
+import blue from "@assets/images/Blue.png";
 const Hero = () => {
   return (
     <section
