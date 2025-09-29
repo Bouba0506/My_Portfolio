@@ -1,5 +1,5 @@
 import React from "react";
-import turbo from "../assets/images/turbo.jpg";
+import turbo from "../src/assets/images/turbo.jpg";
 const projects = [
   {
     img: turbo,

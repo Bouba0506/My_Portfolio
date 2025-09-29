@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import { Navbar } from "./Components/navbar";
+import NotFound from "./pages/NotFound"
+import {Navbar} from "../Components/Navbar"
 
 function App() {
   return (
     <>
       <div className="bg-[#080001] h-full p-4 w-full ">
-        <Navbar />
+        <Navbar/>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Home/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

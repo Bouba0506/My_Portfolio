@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 const navIems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
@@ -7,9 +7,26 @@ const navIems = [
   { name: "Contact", href: "#contact" },
 ];
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScroll(true);
+      } else {
+        setIsScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <div className="text-white flex justify-between  items-center w-full h-16  md:px-4 px-8 py-2">
+    <div
+      className={`text-white fixed top-0 left-0 flex justify-between  items-center w-full h-16  md:px-4 px-8 py-2 ${
+        isScroll ? "bg-[#373535] shadow-md" : "bg-transparent"
+      }`}
+    >
       <h1 className="text-xl font-semibold text-amber-50 px-10">
         <a href="#home">
           <span className="text-red-500">My</span> Portfolio
