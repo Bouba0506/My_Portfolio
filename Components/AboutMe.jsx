@@ -1,10 +1,20 @@
 import React from "react";
 
+const handledownload = (url) => {
+  const filename = url.split("/").pop();
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 const AboutMe = () => {
   return (
     <section
       id="about"
-      className="mt-28 text-white px-16 gap-10 w-full flex flex-col items-center justify-center"
+      className="mt-28 text-white md:px-16 px-4 gap-10 w-full flex flex-col items-center justify-center"
     >
       <h1 className="text-2xl font-bold">
         About <span className="text-[#ed072a]">Me</span>
@@ -28,16 +38,22 @@ const AboutMe = () => {
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <a
               href="#contact"
-              className="bg-[#542d3371] rounded-lg flex items-center text-xl p-2 justify-center"
+              className="bg-[#542d3371] rounded-lg flex items-center 
+              text-xl p-2 justify-center hover:scale-95 
+              transition-all duration-300 cursor-pointer"
             >
-              Get In Touch
+              Let's Talk
             </a>
-            <a
-              href="#contact"
-              className="bg-[#9b061c] rounded-lg flex items-center text-xl p-2 justify-center"
+            <button
+              className="bg-[#9b061c] rounded-lg flex items-center text-xl 
+              p-2 justify-center hover:scale-105 
+              transition-all duration-300 hover:bg-[#573838] cursor-pointer"
+              onClick={() => {
+                handledownload("/Cv_campus.pdf");
+              }}
             >
-              Donwload
-            </a>
+              Donwload Cv
+            </button>
           </div>
         </div>
         {/* div right side */}

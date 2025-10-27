@@ -58,7 +58,7 @@ export const Navbar = () => {
       </button>
 
       {/* Desktop Navbar */}
-      <div className="hidden lg:flex space-x-4 gap-10">
+      <div className="hidden md:flex space-x-4 gap-10">
         {navIems.map((item, index) => {
           return (
             <a
@@ -96,7 +96,7 @@ export const Navbar = () => {
       </div>
 
       {/* icons social media */}
-      <div className="md:flex items-center space-x-3 hidden">
+      <div className="lg:flex items-center space-x-3 hidden">
         <a
           href="https://github.com/Bouba0506"
           className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"

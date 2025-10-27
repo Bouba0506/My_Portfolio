@@ -1,46 +1,44 @@
 import React from "react";
+import FoundMe from "./FoundMe";
 // import emailjs from '@emailjs/browser';
 
 const ContactSec = () => {
+  //  const [name, setName] = useState("");
+  //  const [email, setEmail] = useState("");
+  //  const [message, setMessage] = useState("");
 
-//  const [name, setName] = useState("");
-//  const [email, setEmail] = useState("");
-//  const [message, setMessage] = useState("");
+  //  const handleSubmit=(e)=>{
+  //   e.preventDefault();
 
-//  const handleSubmit=(e)=>{
-//   e.preventDefault();
+  //   const serviceId='service_kk8oaup';
+  //   const templateId='template_gl1ty45';
+  //   const publicKey='_rNn5IEkWwKYVICfA';
 
-//   const serviceId='service_kk8oaup';
-//   const templateId='template_gl1ty45';
-//   const publicKey='_rNn5IEkWwKYVICfA';
+  //  const templateParams={
+  //   from_name:name,
+  //   from_email:email,
+  //   to_name:'Portfolio',
+  //   from_message:message
+  //  };
 
-//  const templateParams={
-//   from_name:name,
-//   from_email:email,
-//   to_name:'Portfolio',
-//   from_message:message
-//  };
+  //  emailjs.send(serviceId,templateId,templateParams,publicKey)
+  //  .then((reponse)=>{
+  //   console.log('Email sent successfully',reponse);
+  //   setName('');
+  //   setEmail('');
+  //   setMessage('');
+  //  }).catch((erro)=>{
+  //   console.log('Error sending email',erro);
+  //  });
 
-//  emailjs.send(serviceId,templateId,templateParams,publicKey)
-//  .then((reponse)=>{
-//   console.log('Email sent successfully',reponse);
-//   setName('');
-//   setEmail('');
-//   setMessage('');
-//  }).catch((erro)=>{
-//   console.log('Error sending email',erro);
-//  });
- 
-//  };
+  //  };
 
-  
-  
-return (
+  return (
     <section
       id="contact"
-      className="mt-28 text-white px-16 gap-10 w-full flex flex-col items-center justify-center"
+      className="mt-28 text-white md:px-16 cursor-pointer px-4 gap-10 w-full flex flex-col items-center justify-center"
     >
-      <h1 className="text-2xl font-bold">
+      <h1 className="text-2xl font-bold text-center">
         Contact <span className="text-[#ed072a]">Me</span>
       </h1>
       <p className="text-gray-300 lg:text-center">
@@ -48,7 +46,7 @@ return (
         and collaborations, <br /> so feel free to reach out to me on any of the
         following platforms.
       </p>
-      <div className="w-full lg:flex items-center justify-center gap-10 relative">
+      <div className="w-full md:flex items-center justify-center gap-10 relative">
         {/* leftform */}
         <div className="lg:w-1/3 lg:mb-0 mb-3 flex flex-col space-y-5">
           <div className="flex items-center gap-2">
@@ -71,7 +69,9 @@ return (
             </span>
             <div className="flex flex-col justify-center">
               <h1 className="font-semibold">Email</h1>
-              <a href="mailto:Bouba.Sisu@proton.me" className="text-xs">Bouba.Sisu@proton.me</a>
+              <a href="mailto:Bouba.Sisu@proton.me" className="text-xs">
+                Bouba.Sisu@proton.me
+              </a>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -93,7 +93,7 @@ return (
             </span>
             <div className="flex flex-col justify-center">
               <h1 className="font-semibold">Phone</h1>
-              <p className="text-xs">+212 695 632 657 </p>
+              <a href="http://Wa.me/+212695632657" className="text-xs">+212 695 632 657 </a>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -178,10 +178,13 @@ return (
           </div>
         </div>
         {/* rightform */}
-        <div className="flex flex-col space-y-3 justify-center w-1/3 items-center rounded-lg shadow-xl bg-[#542d3371] p-4 ">
+        <div className="flex flex-col space-y-3 justify-center md:w-1/3 items-center rounded-lg shadow-xl bg-[#542d3371] p-4 ">
           <h1 className="text-xl font-semibold">Send a Message</h1>
-          <form className="flex flex-col space-y-2" action="https://formspree.io/f/mrbkljrn"
-  method="POST" >
+          <form
+            className="flex flex-col space-y-2"
+            action="https://formspree.io/f/mrbkljrn"
+            method="POST"
+          >
             <div className="flex flex-col space-y-2  p-2 text-white">
               <label className="text-sm text-center">Your Name</label>
               <input
@@ -198,7 +201,6 @@ return (
                 placeholder="Email@example.com"
                 name="email"
                 className="w-full p-2 bg-[#0f141a5e] rounded-lg outline-none "
-              
               />
             </div>
             <div className="flex flex-col space-y-2  p-2 text-white">
@@ -207,16 +209,19 @@ return (
                 placeholder="Message"
                 name="message"
                 className="w-full rounded-lg bg-[#0f141a5e] p-2 text-white"
-               
               ></textarea>
             </div>
 
-            <button type="submit" className="bg-[#9b061c] rounded-lg flex items-center text-xl p-2 justify-center">
+            <button
+              type="submit"
+              className="bg-[#9b061c] rounded-lg flex items-center hover:scale-110 transition-all duration-300 text-xl p-2 justify-center"
+            >
               Send
             </button>
           </form>
         </div>
       </div>
+      <FoundMe />
     </section>
   );
 };

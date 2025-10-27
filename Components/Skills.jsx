@@ -28,12 +28,12 @@ const filterSkills=skilltab.filter((skill)=>activeCategory==="all" || skill.cate
   return (
     <section
       id="skills"
-      className="mt-28 text-white px-16 gap-10 w-full flex flex-col items-center justify-center"
+      className="mt-28 text-white md:px-16 px-6 cursor-pointer gap-10 w-full flex flex-col md:items-center justify-center"
     >
       <h1 className="text-2xl font-bold">
         My <span className="text-[#ed072a]"> Skills</span>
       </h1>
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="flex flex-wrap justify-center  gap-4 mb-12">
         {categorys.map((category, key) => (
           <button
             key={key}
@@ -42,17 +42,17 @@ const filterSkills=skilltab.filter((skill)=>activeCategory==="all" || skill.cate
               activeCategory === category
                 ? "bg-[#542d33] text-white"
                 : "bg-[#133c67] text-white"
-            } rounded-full flex items-center text-xl p-3 justify-center`}
+            } rounded-full flex items-center text-xl p-3 cursor-pointer justify-center`}
           >
             {category}
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5  ">
         {filterSkills.map((skill, key) => (
           <div
             key={key}
-            className="pb-4 pt-2 w-52 px-2 rounded-sm bg-[#542d3371] shadow-xl"
+            className="pb-4 pt-2 lg:w-52 w-80 px-2 rounded-sm bg-[#542d3371] shadow-xl hover:scale-105 transition-all duration-300"
           >
             <div className="text-left mb-4">
               <h2 className="text-lg font-semibold">{skill.name}</h2>

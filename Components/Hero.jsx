@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="mt-28 md:flex items-center text-white md:px-16 px-8 gap-10 w-full "
+      className="pt-28 md:flex items-center text-white md:px-16 px-6 gap-10 w-full "
     >
       {/* left side */}
       <div className="md:w-1/2  flex flex-col text-3xl font-bold justify-center">
@@ -96,7 +96,10 @@ const Hero = () => {
               </svg>
             </a>
           </div>
-          <button className="bg-[#9b061c] rounded-lg flex items-center text-xl p-2 justify-center">
+          <button
+            className="bg-[#9b061c] rounded-lg hover:scale-95 transition-all duration-300 
+          hover:bg-[#573838] flex items-center text-xl p-2 justify-center cursor-pointer"
+          >
             Contact Me
           </button>
         </div>
