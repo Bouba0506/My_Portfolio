@@ -1,149 +1,130 @@
-import React from "react";
+import { Code2, LayoutTemplate, Workflow, Download, MessageSquare } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import { useInView, cx } from "@/hooks/useInView";
 
-const handledownload = (url) => {
-  const filename = url.split("/").pop();
+const roles = [
+  {
+    Icon: Code2,
+    title: "Web developer",
+    body: "Responsive, accessible, fast web applications built with modern frameworks and no wasted bytes.",
+  },
+  {
+    Icon: LayoutTemplate,
+    title: "Front-end engineer",
+    body: "Scalable interfaces in React and Next.js, with clean component boundaries and code other people can read.",
+  },
+  {
+    Icon: Workflow,
+    title: "Project delivery",
+    body: "Taking a project from first sketch to production, and keeping everyone informed along the way.",
+  },
+];
+
+const downloadCv = (url) => {
   const link = document.createElement("a");
   link.href = url;
-  link.setAttribute("download", filename);
+  link.setAttribute("download", url.split("/").pop());
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 };
 
 const AboutMe = () => {
+  const [bodyRef, bodyInView] = useInView({ threshold: 0.15 });
+  const [cardsRef, cardsInView] = useInView({ threshold: 0.15 });
+
   return (
-    <section
-      id="about"
-      className="mt-28 text-white md:px-16 px-4 gap-10 w-full flex flex-col items-center justify-center"
-    >
-      <h1 className="text-2xl font-bold">
-        About <span className="text-[#ed072a]">Me</span>
-      </h1>
-      <div className=" w-full grid grid-cols-1 md:grid-cols-2 space-x-4 gap-16">
-        {/* div left side */}
-        <div className="flex flex-col gap-10">
-          <h1 className="text-xl font-semibold"> Passionnate Web Developer</h1>
-          <p className="text-sm">
-            With over 3 yeras of experience in Web development, I specialize in
-            creating responsive, accessible, and performant web applications. I
-            am committed to delivering high-quality, user-friendly experiences
-            that meet the needs of my users.
-          </p>
-          <p className="text-sm">
-            I’m driven by the challenge of designing elegant and efficient
-            solutions to complex problems. I continuously explore new
-            technologies and best practices to stay ahead in the fast-paced,
-            ever-evolving world of web development.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <a
-              href="#contact"
-              className="bg-[#542d3371] rounded-lg flex items-center 
-              text-xl p-2 justify-center hover:scale-95 
-              transition-all duration-300 cursor-pointer"
+    <section id="about" className="relative px-6 py-24 md:px-16 md:py-32">
+      <div className="mx-auto w-full max-w-6xl">
+        <SectionHeading
+          title="About me"
+          lead="Three years of turning designs into interfaces that hold up on real devices and real connections."
+        />
+
+        <div className="mt-16 grid gap-14 lg:grid-cols-2 lg:gap-20">
+          {/* Bio */}
+          <div ref={bodyRef}>
+            <h3
+              className={cx(
+                "display text-2xl text-bone reveal",
+                bodyInView
+              )}
             >
-              Let's Talk
-            </a>
-            <button
-              className="bg-[#9b061c] rounded-lg flex items-center text-xl 
-              p-2 justify-center hover:scale-105 
-              transition-all duration-300 hover:bg-[#573838] cursor-pointer"
-              onClick={() => {
-                handledownload("/Cv_campus.pdf");
-              }}
+              I care about the part users actually touch.
+            </h3>
+            <p
+              className={cx(
+                "mt-6 max-w-[62ch] leading-relaxed text-bone-dim reveal",
+                bodyInView
+              )}
+              style={{ "--delay": "120ms" }}
             >
-              Donwload Cv
-            </button>
-          </div>
-        </div>
-        {/* div right side */}
-        <div className="flex flex-col space-y-3">
-          <div className="w-full flex gap-2 p-2 items-center  rounded-sm bg-[#542d3371] ">
-            <div className="bg-[#133b6771] -mt-12 rounded-lg flex items-center text-xl p-2 justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-chevrons-left-right-icon lucide-chevrons-left-right"
+              Over three years in web development I have specialised in
+              responsive, accessible, performant applications. A page that looks
+              right but takes six seconds to load is a page that failed, so I
+              treat speed and accessibility as part of the design, not a pass at
+              the end.
+            </p>
+            <p
+              className={cx(
+                "mt-5 max-w-[62ch] leading-relaxed text-bone-dim reveal",
+                bodyInView
+              )}
+              style={{ "--delay": "220ms" }}
+            >
+              What keeps me here is the problem-solving: finding the simple,
+              elegant answer to a messy requirement. I keep learning new tools
+              and revisiting old habits, because the web moves and standing
+              still is a choice.
+            </p>
+
+            <div
+              className={cx(
+                "mt-9 flex flex-col gap-3 sm:flex-row reveal",
+                bodyInView
+              )}
+              style={{ "--delay": "320ms" }}
+            >
+              <a
+                href="#contact"
+                className="group flex items-center justify-center gap-2 rounded-full bg-crimson px-6 py-3 text-sm font-semibold text-bone transition-transform duration-300 hover:-translate-y-0.5"
               >
-                <path d="m9 7-5 5 5 5" />
-                <path d="m15 7 5 5-5 5" />
-              </svg>
-            </div>
-            <div className="flex flex-col space-y-3 ">
-              <h1 className="font-bold text-xl">Web Developer</h1>
-              <p>
-                Creating responsive, accessible, and performant web applications
-                with modern frameworks
-              </p>
-            </div>
-          </div>
-          <div className="w-full flex gap-2 p-2 items-center  rounded-sm bg-[#542d3371] ">
-            <div className="bg-[#133b6771] -mt-12 rounded-lg flex items-center text-xl p-2 justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-folder-kanban-icon lucide-folder-kanban"
+                <MessageSquare size={16} />
+                Let us talk
+              </a>
+              <button
+                type="button"
+                onClick={() => downloadCv("/Cv_campus.pdf")}
+                className="flex cursor-pointer items-center justify-center gap-2 rounded-full border border-ink-line px-6 py-3 text-sm font-semibold text-bone transition-colors duration-300 hover:border-crimson hover:text-crimson"
               >
-                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                <path d="M8 10v4" />
-                <path d="M12 10v2" />
-                <path d="M16 10v6" />
-              </svg>
-            </div>
-            <div className="flex flex-col space-y-3 ">
-              <h1 className="font-bold text-xl">Front-End Developer</h1>
-              <p>
-                Building user-focused, scalable web interfaces using clean code
-                and modern technologies like React and Next.js.
-              </p>
+                <Download size={16} />
+                Download CV
+              </button>
             </div>
           </div>
-          <div className="w-full flex gap-2 p-2 items-center  rounded-sm bg-[#542d3371] ">
-            <div className="bg-[#133b6771] -mt-12 rounded-lg flex items-center text-xl p-2 justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-brain-icon lucide-brain"
+
+          {/* Roles */}
+          <div ref={cardsRef} className="flex flex-col gap-4">
+            {roles.map(({ Icon, title, body }, i) => (
+              <article
+                key={title}
+                className={cx(
+                  "panel panel-hover group flex gap-5 rounded-2xl p-6 reveal",
+                  cardsInView
+                )}
+                style={{ "--delay": `${i * 130}ms` }}
               >
-                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
-                <path d="M17.599 6.5a3 3 0 0 0 .399-1.375" />
-                <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" />
-                <path d="M3.477 10.896a4 4 0 0 1 .585-.396" />
-                <path d="M19.938 10.5a4 4 0 0 1 .585.396" />
-                <path d="M6 18a4 4 0 0 1-1.967-.516" />
-                <path d="M19.967 17.484A4 4 0 0 1 18 18" />
-              </svg>
-            </div>
-            <div className="flex flex-col space-y-3 ">
-              <h1 className="font-bold text-xl">Project Management</h1>
-              <p>
-                Leading projects from conception to completion, ensuring
-                successful delivery of high-quality software.
-              </p>
-            </div>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ink-line bg-ink text-crimson transition-colors duration-300 group-hover:border-crimson/50 group-hover:text-ember">
+                  <Icon size={19} />
+                </span>
+                <div>
+                  <h4 className="display text-lg text-bone">{title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-bone-dim">
+                    {body}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>

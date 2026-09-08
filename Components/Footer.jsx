@@ -1,120 +1,142 @@
-import React from "react";
-import { Mail,Phone, Linkedin, Facebook, Instagram } from 'lucide-react';
-const footer = ["Home", "About", "Contact", "Career"];
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Instagram,
+  Facebook,
+  ArrowUp,
+} from "lucide-react";
 
-const reseau = [
+const navigation = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
+
+const socials = [
+  { Icon: Github, href: "https://github.com/Bouba0506", label: "GitHub" },
   {
-    name: "Instagram",
-    href: "https://www.instagram.com/bouba_bah224/",
-  },
-  {
-    name: "Linkedin",
+    Icon: Linkedin,
     href: "https://www.linkedin.com/in/boubacar-bah-a5b849278/",
+    label: "LinkedIn",
   },
   {
-    name: "Facebook",
+    Icon: Instagram,
+    href: "https://www.instagram.com/bouba_bah224/",
+    label: "Instagram",
+  },
+  {
+    Icon: Facebook,
     href: "https://www.facebook.com/profile.php?id=100004883298025",
-  },
-  {
-    name: "Whatsapp",
-    href: "https://wa.me/+212695632657",
+    label: "Facebook",
   },
 ];
 
-const Footer = () => {
-  return (
-    <div className="mt-10   bg-[#201b1b73] w-full text-white  ">
-      <div className="flex flex-wrap items-center md:px-16 px-6 py-4 justify-between w-full">
-        <h1 className="text-2xl font-bold">
-          <span className="text-red-500">My</span> Portfolio
-        </h1>
+const contact = [
+  {
+    Icon: Mail,
+    value: "Bouba.Sisu@proton.me",
+    href: "mailto:Bouba.Sisu@proton.me",
+  },
+  { Icon: Phone, value: "+212 695 632 657", href: "https://wa.me/212695632657" },
+  { Icon: MapPin, value: "Agadir, Morocco" },
+];
 
-        <div className="flex flex-col gap-6 items-center">
-          {footer.map((item, index) => (
-            <div key={index} className="text-xl font-bold">
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col items-center gap-6">
-          {reseau.map((items, ind) => (
-            <a key={ind} href={items.href} className="text-xl font-bold">
-              {items.name}
-            </a>
-          ))}
-        </div>
-
-          <div className="flex flex-col items-start justify-center gap-2">
-           <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <Mail size={20}/>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Email</h1>
-              <a href="mailto:Bouba.Sisu@proton.me" className="text-xs">
-                Bouba.Sisu@proton.me
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <Phone size={20}/>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Phone</h1>
-              <a href="http://Wa.me/+212695632657" className="text-xs">+212 695 632 657 </a>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-mail-icon lucide-mail"
+const Footer = () => (
+  <footer className="relative border-t border-ink-line bg-ink-raised/40">
+    <div className="mx-auto w-full max-w-6xl px-6 py-16 md:px-16">
+      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+        {/* Brand */}
+        <div>
+          <a
+            href="#home"
+            className="display text-2xl text-bone transition-colors hover:text-crimson"
+          >
+            bah<span className="text-crimson">.</span>dev
+          </a>
+          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-bone-dim">
+            Front-end developer in Agadir, building fast and accessible
+            interfaces with React, Next.js and Tailwind CSS.
+          </p>
+          <div className="mt-6 flex items-center gap-3">
+            {socials.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:-translate-y-0.5 hover:border-crimson hover:text-crimson"
               >
-                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-              </svg>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Location</h1>
-              <p className="text-xs">1465 Tilila, Agadir, Maroc</p>
-            </div>
-          </div>
-
-
-
-<div className="flex flex-col ml-7 mt-8">
-            <h2>Connect With Me</h2>
-            <div className="flex items-center mt-2 gap-2">
-              <a href="https://www.linkedin.com/in/boubacar-bah-a5b849278/">
-                <Linkedin size={16}/>
+                <Icon size={16} />
               </a>
-              <a href="https://www.instagram.com/bouba_bah224/">
-                <Instagram size={16}/>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=100004883298025">
-                <Facebook size={16}/>
-              </a>
-            </div>
+            ))}
           </div>
+        </div>
 
-          </div>
+        {/* Navigation */}
+        <nav aria-label="Footer">
+          <h2 className="text-sm font-semibold text-bone">Navigate</h2>
+          <ul className="mt-4 flex flex-col gap-2.5">
+            {navigation.map((item) => (
+              <li key={item.name}>
+                <a
+                  href={item.href}
+                  className="text-sm text-bone-dim transition-colors duration-300 hover:text-crimson"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
+        {/* Contact */}
+        <div>
+          <h2 className="text-sm font-semibold text-bone">Contact</h2>
+          <ul className="mt-4 flex flex-col gap-3">
+            {contact.map(({ Icon, value, href }) => (
+              <li key={value} className="flex items-center gap-2.5">
+                <Icon size={15} className="shrink-0 text-crimson" />
+                {href ? (
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noreferrer" : undefined}
+                    className="text-sm text-bone-dim transition-colors duration-300 hover:text-crimson"
+                  >
+                    {value}
+                  </a>
+                ) : (
+                  <span className="text-sm text-bone-dim">{value}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className="py-2 flex items-center justify-center w-full">
-        <p className="text-xs text-center">Created By Bah Boubacar &copy; 2025</p>
+
+      <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-ink-line pt-7 sm:flex-row">
+        <p className="mono text-bone-dim">
+          Built by Boubacar Bah &copy; {new Date().getFullYear()}
+        </p>
+        <a
+          href="#home"
+          className="group flex items-center gap-2 text-sm text-bone-dim transition-colors duration-300 hover:text-crimson"
+        >
+          Back to top
+          <ArrowUp
+            size={15}
+            className="transition-transform duration-300 group-hover:-translate-y-0.5"
+          />
+        </a>
       </div>
     </div>
-  );
-};
+  </footer>
+);
 
 export default Footer;

@@ -1,227 +1,210 @@
-import React from "react";
+import { Mail, Phone, MapPin, Send, Linkedin, Instagram, Facebook } from "lucide-react";
 import FoundMe from "./FoundMe";
-// import emailjs from '@emailjs/browser';
+import SectionHeading from "./SectionHeading";
+import { useInView, cx } from "@/hooks/useInView";
+
+const details = [
+  {
+    Icon: Mail,
+    label: "Email",
+    value: "Bouba.Sisu@proton.me",
+    href: "mailto:Bouba.Sisu@proton.me",
+  },
+  {
+    Icon: Phone,
+    label: "Phone",
+    value: "+212 695 632 657",
+    href: "https://wa.me/212695632657",
+  },
+  {
+    Icon: MapPin,
+    label: "Location",
+    value: "1465 Tilila, Agadir, Morocco",
+  },
+];
+
+const socials = [
+  {
+    Icon: Linkedin,
+    href: "https://www.linkedin.com/in/boubacar-bah-a5b849278/",
+    label: "LinkedIn",
+  },
+  {
+    Icon: Instagram,
+    href: "https://www.instagram.com/bouba_bah224/",
+    label: "Instagram",
+  },
+  {
+    Icon: Facebook,
+    href: "https://www.facebook.com/profile.php?id=100004883298025",
+    label: "Facebook",
+  },
+];
+
+const fieldClass =
+  "w-full rounded-xl border border-ink-line bg-ink px-4 py-3 text-sm text-bone placeholder:text-bone-dim/50 transition-colors duration-300 focus:border-crimson focus:outline-none";
 
 const ContactSec = () => {
-  //  const [name, setName] = useState("");
-  //  const [email, setEmail] = useState("");
-  //  const [message, setMessage] = useState("");
-
-  //  const handleSubmit=(e)=>{
-  //   e.preventDefault();
-
-  //   const serviceId='service_kk8oaup';
-  //   const templateId='template_gl1ty45';
-  //   const publicKey='_rNn5IEkWwKYVICfA';
-
-  //  const templateParams={
-  //   from_name:name,
-  //   from_email:email,
-  //   to_name:'Portfolio',
-  //   from_message:message
-  //  };
-
-  //  emailjs.send(serviceId,templateId,templateParams,publicKey)
-  //  .then((reponse)=>{
-  //   console.log('Email sent successfully',reponse);
-  //   setName('');
-  //   setEmail('');
-  //   setMessage('');
-  //  }).catch((erro)=>{
-  //   console.log('Error sending email',erro);
-  //  });
-
-  //  };
+  const [infoRef, infoInView] = useInView({ threshold: 0.15 });
+  const [formRef, formInView] = useInView({ threshold: 0.15 });
 
   return (
-    <section
-      id="contact"
-      className="mt-28 text-white md:px-16 cursor-pointer px-4 gap-10 w-full flex flex-col items-center justify-center"
-    >
-      <h1 className="text-2xl font-bold text-center">
-        Contact <span className="text-[#ed072a]">Me</span>
-      </h1>
-      <p className="text-gray-300 lg:text-center">
-        Here a few ways to get in touch with me: I'm always open to discussions
-        and collaborations, <br /> so feel free to reach out to me on any of the
-        following platforms.
-      </p>
-      <div className="w-full md:flex items-center justify-center gap-10 relative">
-        {/* leftform */}
-        <div className="lg:w-1/3 lg:mb-0 mb-3 flex flex-col space-y-5">
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-mail-icon lucide-mail"
-              >
-                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-              </svg>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Email</h1>
-              <a href="mailto:Bouba.Sisu@proton.me" className="text-xs">
-                Bouba.Sisu@proton.me
-              </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-phone-icon lucide-phone"
-              >
-                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
-              </svg>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Phone</h1>
-              <a href="http://Wa.me/+212695632657" className="text-xs">+212 695 632 657 </a>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-mail-icon lucide-mail"
-              >
-                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-              </svg>
-            </span>
-            <div className="flex flex-col justify-center">
-              <h1 className="font-semibold">Location</h1>
-              <p className="text-xs">1465 Tilila, Agadir, Maroc</p>
-            </div>
-          </div>
-          <div className="flex flex-col ml-7 mt-8">
-            <h2>Connect With Me</h2>
-            <div className="flex items-center mt-2 gap-2">
-              <a href="https://www.linkedin.com/in/boubacar-bah-a5b849278/">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-linkedin-icon lucide-linkedin"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/bouba_bah224/">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-instagram-icon lucide-instagram"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=100004883298025">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-facebook-icon lucide-facebook"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-        {/* rightform */}
-        <div className="flex flex-col space-y-3 justify-center md:w-1/3 items-center rounded-lg shadow-xl bg-[#542d3371] p-4 ">
-          <h1 className="text-xl font-semibold">Send a Message</h1>
-          <form
-            className="flex flex-col space-y-2"
-            action="https://formspree.io/f/mrbkljrn"
-            method="POST"
-          >
-            <div className="flex flex-col space-y-2  p-2 text-white">
-              <label className="text-sm text-center">Your Name</label>
-              <input
-                type="text"
-                placeholder="Bah Boubacar"
-                name="name"
-                className="w-full p-2 bg-[#0f141a5e] rounded-lg outline-none "
-              />
-            </div>
-            <div className="flex flex-col space-y-2  p-2 text-white">
-              <label className="text-sm text-center">Your Email</label>
-              <input
-                type="text"
-                placeholder="Email@example.com"
-                name="email"
-                className="w-full p-2 bg-[#0f141a5e] rounded-lg outline-none "
-              />
-            </div>
-            <div className="flex flex-col space-y-2  p-2 text-white">
-              <label className="text-sm text-center">Your Message</label>
-              <textarea
-                placeholder="Message"
-                name="message"
-                className="w-full rounded-lg bg-[#0f141a5e] p-2 text-white"
-              ></textarea>
-            </div>
+    <section id="contact" className="relative px-6 py-24 md:px-16 md:py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 bottom-0 h-[30rem] w-[30rem] rounded-full bg-crimson-deep/12 blur-[130px]"
+      />
 
-            <button
-              type="submit"
-              className="bg-[#9b061c] rounded-lg flex items-center hover:scale-110 transition-all duration-300 text-xl p-2 justify-center"
+      <div className="relative mx-auto w-full max-w-6xl">
+        <SectionHeading
+          title="Get in touch"
+          lead="Have a project, a role, or a rough idea you want a second opinion on? Send it over. I answer every message."
+        />
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          {/* Details */}
+          <div ref={infoRef} className="flex flex-col gap-5">
+            {details.map(({ Icon, label, value, href }, i) => {
+              const Row = href ? "a" : "div";
+              return (
+                <Row
+                  key={label}
+                  {...(href
+                    ? {
+                        href,
+                        target: href.startsWith("http") ? "_blank" : undefined,
+                        rel: href.startsWith("http") ? "noreferrer" : undefined,
+                      }
+                    : {})}
+                  className={cx(
+                    "panel panel-hover group flex items-center gap-4 rounded-2xl p-5 reveal",
+                    infoInView
+                  )}
+                  style={{ "--delay": `${i * 110}ms` }}
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ink-line bg-ink text-crimson transition-colors duration-300 group-hover:border-crimson/50 group-hover:text-ember">
+                    <Icon size={18} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="mono block text-bone-dim">{label}</span>
+                    <span className="mt-0.5 block truncate text-sm font-medium text-bone">
+                      {value}
+                    </span>
+                  </span>
+                </Row>
+              );
+            })}
+
+            <div
+              className={cx("mt-4 reveal", infoInView)}
+              style={{ "--delay": "340ms" }}
             >
-              Send
-            </button>
-          </form>
+              <h3 className="text-sm font-semibold text-bone">
+                Find me elsewhere
+              </h3>
+              <div className="mt-3 flex items-center gap-3">
+                {socials.map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:-translate-y-0.5 hover:border-crimson hover:text-crimson"
+                  >
+                    <Icon size={17} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div
+            ref={formRef}
+            className={cx("panel rounded-3xl p-7 sm:p-9 reveal", formInView)}
+            style={{ "--delay": "140ms" }}
+          >
+            <h3 className="display text-2xl text-bone">Send a message</h3>
+            <p className="mt-2 text-sm text-bone-dim">
+              Tell me what you are building and when you need it.
+            </p>
+
+            <form
+              action="https://formspree.io/f/mrbkljrn"
+              method="POST"
+              className="mt-7 flex flex-col gap-5"
+            >
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="contact-name"
+                    className="text-xs font-medium text-bone-dim"
+                  >
+                    Your name
+                  </label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                    placeholder="Amina Ouali"
+                    className={fieldClass}
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="contact-email"
+                    className="text-xs font-medium text-bone-dim"
+                  >
+                    Your email
+                  </label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder="amina@example.com"
+                    className={fieldClass}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="contact-message"
+                  className="text-xs font-medium text-bone-dim"
+                >
+                  Your message
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows={5}
+                  required
+                  placeholder="A short brief, a timeline, a link to something you like."
+                  className={`${fieldClass} resize-y`}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="group flex cursor-pointer items-center justify-center gap-2 rounded-full bg-crimson px-7 py-3.5 text-sm font-semibold text-bone transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember"
+              >
+                Send message
+                <Send
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </button>
+            </form>
+          </div>
         </div>
+
+        <FoundMe />
       </div>
-      <FoundMe />
     </section>
   );
 };
