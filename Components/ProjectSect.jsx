@@ -1,99 +1,180 @@
-import React from "react";
-import turbo from "@assets/images/turbo.jpg";
+import { useCallback, useRef } from "react";
+import { Github, ArrowUpRight } from "lucide-react";
 import shoes from "@assets/images/shoes.jpg";
 import barber from "@assets/images/barber.jpg";
 import medcine from "@assets/images/medcine.jpg";
+import SectionHeading from "./SectionHeading";
+import { useInView, cx } from "@/hooks/useInView";
+
 const projects = [
   {
     img: shoes,
-    skill: ["React", "Tailwindcss"],
-    titre: "Sneakers Website",
-    hrefgithub:"https://github.com/Bouba0506/sneakers",
-   
+    alt: "Sneakers store interface",
+    title: "Sneakers store",
+    summary:
+      "A product catalogue with filtering, cart state and a checkout flow that stays readable on a phone.",
+    stack: ["React", "Tailwind CSS"],
+    repo: "https://github.com/Bouba0506/sneakers",
   },
   {
     img: barber,
-    skill: ["Nextjs", "Tailwindcss"],
-    titre: "Barber Website",
-    hrefgithub:"https://github.com/Bouba0506/Barber_shop",
+    alt: "Barber shop website",
+    title: "Barber shop",
+    summary:
+      "A booking-led site for a local barber: services, gallery, and a contact flow that gets people in the chair.",
+    stack: ["Next.js", "Tailwind CSS"],
+    repo: "https://github.com/Bouba0506/Barber_shop",
   },
   {
     img: medcine,
-    skill: ["Nextjs", "Tailwindcss"],
-    titre: "Medcine Website",
-    hrefgithub:"https://github.com/Bouba0506/pharmacie",
-  },
-  {
-    img: turbo,
-    skill: ["Nextjs", "Tailwindcss"],
-    titre: "this is a project description",
-    hrefgithub:"https://github.com/Bouba0506",
+    alt: "Pharmacy website",
+    title: "Pharmacy",
+    summary:
+      "A pharmacy storefront built around search: find a product fast, see whether it is in stock, and get directions.",
+    stack: ["Next.js", "Tailwind CSS"],
+    repo: "https://github.com/Bouba0506/pharmacie",
   },
 ];
 
-const ProjectSect = () => {
+const ProjectCard = ({ project, index, inView }) => {
+  const cardRef = useRef(null);
+
+  // Small pointer-following tilt. Kept subtle so the card still reads
+  // as flat until you interact with it.
+  const handleMove = useCallback((e) => {
+    const el = cardRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(1000px) rotateX(${-py * 5}deg) rotateY(${px * 5}deg) translateY(-6px)`;
+  }, []);
+
+  const handleLeave = useCallback(() => {
+    const el = cardRef.current;
+    if (el) el.style.transform = "";
+  }, []);
+
   return (
-    <section
-      id="projects"
-      className="mt-28 text-white md:px-16 px-4 gap-10 w-full flex flex-col items-center justify-center"
+    <article
+      className={cx("reveal", inView)}
+      style={{ "--delay": `${index * 120}ms` }}
     >
-      <h1 className="text-2xl font-bold">
-        Featured <span className="text-[#ed072a]">Projects</span>
-      </h1>
-      <p>
-        Here are some of my recent projects: Each project is designed to
-        showcase my skills and expertise in a specific area. Whether you're a
-        front-end developer I'm always looking for opportunities to collaborate
-        on exciting projects.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 rounded-2xl border-2 p-2 bg-[#121126]">
-        {projects.map((items, key) => (
-          <div
-            key={key}
-            className="flex flex-col gap-4 pb-2 rounded-sm bg-[#542d3371] hover:scale-105 transition-all duration-300"
-          >
-            <div className="w-full h-[200px] relative ">
-              <img
-                src={items.img}
-                alt="portfolio"
-                className="w-full h-full object-cover rounded-md"
-              />
-            </div>
-            <div className="p-2 mt-2 flex items-center justify-center gap-2 ">
-              {items.skill.map((index, key) => (
-                <span
-                  key={key}
-                  className="rounded-xl bg-[#0d0f10a5] p-2 text-white"
-                >
-                  {index}
-                </span>
-              ))}
-            </div>
-            <span className="capitalize text-center">{items.titre}</span>
-            <div className="mt-4 px-2 flex gap-2 items-center">
-              <a
-                href={items.hrefgithub}
-                className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
+      <div
+        ref={cardRef}
+        onPointerMove={handleMove}
+        onPointerLeave={handleLeave}
+        className="panel group h-full overflow-hidden rounded-3xl transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-crimson/45 hover:shadow-[0_30px_70px_-30px_rgba(237,11,46,0.5)]"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <img
+            src={project.img}
+            alt={project.alt}
+            loading="lazy"
+            className="h-full w-full object-cover brightness-[0.82] saturate-[0.75] transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:brightness-100 group-hover:saturate-100"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-raised via-ink-raised/25 to-transparent" />
+
+          <div className="absolute bottom-4 left-5 flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span
+                key={tech}
+                className="mono rounded-full bg-ink/80 px-2.5 py-1 text-bone backdrop-blur-sm"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-github-icon lucide-github"
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                  <path d="M9 18c-4.51 2-5-2-7-2" />
-                </svg>
-              </a>
-            </div>
+                {tech}
+              </span>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="flex flex-col gap-3 p-6">
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="display text-xl text-bone">{project.title}</h3>
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${project.title} on GitHub`}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:border-crimson hover:text-crimson"
+            >
+              <Github size={16} />
+            </a>
+          </div>
+          <p className="text-sm leading-relaxed text-bone-dim">
+            {project.summary}
+          </p>
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 flex w-fit items-center gap-1.5 text-sm font-semibold text-crimson transition-colors hover:text-ember"
+          >
+            Read the code
+            <ArrowUpRight
+              size={15}
+              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const ProjectSect = () => {
+  const [ref, inView] = useInView({ threshold: 0.08 });
+
+  return (
+    <section id="projects" className="relative px-6 py-24 md:px-16 md:py-32">
+      <div className="mx-auto w-full max-w-6xl">
+        <SectionHeading
+          title="Selected work"
+          lead="Three builds that show how I structure an interface, handle state, and keep a page fast. The code is open on GitHub."
+        />
+
+        <div ref={ref} className="mt-16 grid gap-7 md:grid-cols-2">
+          {projects.map((project, i) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={i}
+              inView={inView}
+            />
+          ))}
+
+          {/* Completes the grid with somewhere real to go, rather than
+              padding it out with a fourth tile. */}
+          <a
+            href="https://github.com/Bouba0506?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+            className={cx(
+              "group flex min-h-[16rem] flex-col items-start justify-center gap-4 rounded-3xl border border-dashed border-ink-line p-8 transition-colors duration-300 hover:border-crimson/60 reveal",
+              inView
+            )}
+            style={{ "--delay": "360ms" }}
+          >
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-colors duration-300 group-hover:border-crimson group-hover:text-crimson">
+              <Github size={20} />
+            </span>
+            <h3 className="display text-xl text-bone">
+              Everything else is on GitHub
+            </h3>
+            <p className="max-w-[38ch] text-sm leading-relaxed text-bone-dim">
+              Experiments, unfinished ideas, and the commit history behind the
+              work above.
+            </p>
+            <span className="flex items-center gap-1.5 text-sm font-semibold text-crimson transition-colors group-hover:text-ember">
+              Browse the repositories
+              <ArrowUpRight
+                size={15}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );

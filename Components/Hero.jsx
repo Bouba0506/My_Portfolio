@@ -1,159 +1,267 @@
-import React from "react";
+import { useCallback, useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
-import blue from "@assets/images/blue.png";
+import { Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
+import bouba from "@assets/images/bouba.webp";
+import { useInView } from "@/hooks/useInView";
+import { useCountUp } from "@/hooks/useCountUp";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+const socials = [
+  { Icon: Github, href: "https://github.com/Bouba0506", label: "GitHub" },
+  {
+    Icon: Linkedin,
+    href: "https://www.linkedin.com/in/boubacar-bah-a5b849278/",
+    label: "LinkedIn",
+  },
+  {
+    Icon: Instagram,
+    href: "https://www.instagram.com/bouba_bah224/",
+    label: "Instagram",
+  },
+];
+
+const stats = [
+  { value: 3, suffix: "+", label: "Years building for the web" },
+  { value: 30, suffix: "+", label: "Collaborations" },
+  { value: 20, suffix: "", label: "Projects shipped" },
+];
+
+const Stat = ({ value, suffix, label, start }) => {
+  const shown = useCountUp(value, start);
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="display text-4xl text-bone tabular-nums">
+        {shown}
+        <span className="text-crimson">{suffix}</span>
+      </span>
+      <span className="text-xs leading-snug text-bone-dim">{label}</span>
+    </div>
+  );
+};
+
+// The four corner handles of the portrait selection frame.
+const Handle = ({ className, delay }) => (
+  <span
+    className={`absolute h-2.5 w-2.5 border border-crimson bg-ink anim-tick ${className}`}
+    style={{ "--delay": delay }}
+  />
+);
+
+const taglines = [
+  "React and Next.js interfaces",
+  "accessible by default",
+  "built from Agadir, Morocco",
+];
+
 const Hero = () => {
+  const glowRef = useRef(null);
+  const [statsRef, statsInView] = useInView({ threshold: 0.5 });
+  const reducedMotion = usePrefersReducedMotion();
+
+  // Pointer-tracked glow. Written straight to CSS vars so React never
+  // re-renders on mousemove.
+  const handlePointer = useCallback((e) => {
+    const el = glowRef.current;
+    if (!el) return;
+    const { left, top } = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - left}px`);
+    el.style.setProperty("--my", `${e.clientY - top}px`);
+  }, []);
+
   return (
     <section
-      id="hero"
-      className="pt-28 md:flex items-center text-white md:px-16 px-6 gap-10 w-full "
+      id="home"
+      ref={glowRef}
+      onPointerMove={handlePointer}
+      className="relative overflow-hidden px-6 pt-28 pb-20 md:px-16 md:pt-36 md:pb-16"
     >
-      {/* left side */}
-      <div className="md:w-1/2  flex flex-col text-3xl font-bold justify-center">
-        <div className="space-y-6 ">
-          <h1>Bah Boubacar, a Front-End</h1>
-          <span className="text-[#ed072a] ">
-            <TypeAnimation
-              sequence={["Web developer", 1000]}
-              wrapper="span"
-              speed={70}
-              repeat={Infinity}
-            ></TypeAnimation>
-          </span>
-        </div>
-        <p className="mt-6 text-xs w-full leading-loose">
-          with a focus on building modern, high-performance user interfaces
-          tailored to client needs. Proficient in{" "}
-          <span className="text-[#ed072a]"> HTML, CSS, JavaScript</span>, and
-          frameworks such as{" "}
-          <span className="text-[#ed072a]"> React and Next.js</span>, I am
-          committed to delivering responsive, accessible, and optimized web
-          solutions. My approach is centered on clean code, user experience, and
-          effective team collaboration.
-        </p>
+      {/* Pointer glow, decorative only. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(440px circle at var(--mx, 72%) var(--my, 28%), rgba(237,11,46,0.14), transparent 70%)",
+        }}
+      />
+      {/* Standing wash behind the portrait side. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 right-0 h-[36rem] w-[36rem] rounded-full bg-crimson-deep/20 blur-[130px]"
+      />
 
-        <div className="flex items-center mt-6 space-x-4">
-          <div className="flex items-center space-x-2">
-            <a
-              href="https://github.com/Bouba0506"
-              className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+        {/* Text column */}
+        <div className="order-2 lg:order-1">
+          <h1 className="display">
+            <span
+              className="anim-rise block text-[clamp(2.75rem,7vw,4.75rem)] text-bone"
+              style={{ "--delay": "120ms" }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-github-icon lucide-github"
-              >
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                <path d="M9 18c-4.51 2-5-2-7-2" />
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/boubacar-bah-a5b849278/"
-              className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
+              Boubacar Bah
+            </span>
+            {/* w-fit keeps the gradient box hugging the text, otherwise
+                the ember stop falls past the last glyph and the line
+                reads as flat crimson. */}
+            <span
+              className="anim-rise mt-1 block w-fit bg-gradient-to-r from-crimson via-[#ff2f4b] to-ember bg-clip-text text-[clamp(1.6rem,3.6vw,2.6rem)] text-transparent"
+              style={{ "--delay": "260ms" }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-linkedin-icon lucide-linkedin"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect width="4" height="12" x="2" y="9" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
-            </a>
-            <a
-              href="https://www.instagram.com/bouba_bah224/"
-              className="w-6 h-6 bg-[#9b061c] hover:scale-125 transition-all duration-300 rounded-full flex items-center justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-instagram-icon lucide-instagram"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg>
-            </a>
-          </div>
-          <button
-            className="bg-[#9b061c] rounded-lg hover:scale-95 transition-all duration-300 
-          hover:bg-[#573838] flex items-center text-xl p-2 justify-center cursor-pointer"
+              front-end developer
+            </span>
+          </h1>
+
+          <p
+            className="mono anim-rise mt-6 flex min-h-6 items-center text-ember"
+            style={{ "--delay": "420ms" }}
           >
-            Contact Me
-          </button>
+            <span className="mr-2 text-crimson">{"//"}</span>
+            {/* The typing effect is JS-driven, so the reduced-motion CSS
+                cannot stop it. Skip it at render instead. */}
+            {reducedMotion ? (
+              <span>{taglines[0]}</span>
+            ) : (
+              <>
+                <TypeAnimation
+                  sequence={taglines.flatMap((line) => [line, 2200])}
+                  wrapper="span"
+                  speed={65}
+                  repeat={Infinity}
+                  cursor={false}
+                />
+                <span className="caret ml-1 inline-block h-3.5 w-[7px] bg-ember" />
+              </>
+            )}
+          </p>
+
+          <p
+            className="anim-rise mt-8 max-w-[56ch] text-[0.975rem] leading-relaxed text-bone-dim"
+            style={{ "--delay": "540ms" }}
+          >
+            I build modern, high-performance interfaces for the people who
+            actually use them: responsive, accessible, and quick on a slow
+            connection. Clean code, honest collaboration, and a bias for
+            shipping.
+          </p>
+
+          <div
+            className="anim-rise mt-10 flex flex-wrap items-center gap-4"
+            style={{ "--delay": "660ms" }}
+          >
+            <a
+              href="#contact"
+              className="group relative overflow-hidden rounded-full bg-crimson px-7 py-3.5 text-sm font-semibold text-bone transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              <span className="relative z-10">Start a project</span>
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-crimson-deep to-ember transition-transform duration-500 group-hover:translate-x-0" />
+            </a>
+            <a
+              href="#projects"
+              className="rounded-full border border-ink-line px-7 py-3.5 text-sm font-semibold text-bone transition-colors duration-300 hover:border-crimson hover:text-crimson"
+            >
+              See the work
+            </a>
+
+            <div className="flex items-center gap-2.5 sm:ml-2">
+              {socials.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:-translate-y-0.5 hover:border-crimson hover:text-crimson"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div
+            ref={statsRef}
+            className="anim-rise mt-14 grid grid-cols-3 gap-6 border-t border-ink-line pt-8"
+            style={{ "--delay": "780ms" }}
+          >
+            {stats.map((s) => (
+              <Stat key={s.label} {...s} start={statsInView} />
+            ))}
+          </div>
         </div>
-        {/* Experience */}
-        <div className="mt-8 md:flex hidden items-center text-[18px] justify-between bg-[#750d1b69] rounded-md px-4 py-4 text-white">
-          <div className="flex flex-col space-y-2">
-            <div className="flex">
-              <span>3</span>
-              <span>+</span>
-            </div>
-            <p>Years of Experience</p>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <div className="flex">
-              <span>30</span>
-              <span>+</span>
-            </div>
-            <p>Collobaration</p>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <div className="flex items-center">
-              <span>20</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="yellow"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-trophy-icon lucide-trophy"
+
+        {/* Portrait, framed as a selected object.
+            The entrance and the idle drift live on separate elements:
+            two `animation` shorthands on one element cancel out. */}
+        <div className="order-1 mx-auto w-full max-w-[15rem] sm:max-w-[18rem] lg:order-2 lg:max-w-[24rem]">
+          <div className="anim-frame" style={{ "--delay": "300ms" }}>
+            <div className="anim-drift relative">
+              {/* Selection outline */}
+              <div className="pointer-events-none absolute -inset-4 border border-crimson/45 sm:-inset-5" />
+
+              <Handle
+                className="-top-[1.3rem] -left-[1.3rem] sm:-top-[1.55rem] sm:-left-[1.55rem]"
+                delay="900ms"
+              />
+              <Handle
+                className="-top-[1.3rem] -right-[1.3rem] sm:-top-[1.55rem] sm:-right-[1.55rem]"
+                delay="980ms"
+              />
+              <Handle
+                className="-bottom-[1.3rem] -left-[1.3rem] sm:-bottom-[1.55rem] sm:-left-[1.55rem]"
+                delay="1060ms"
+              />
+              <Handle
+                className="-bottom-[1.3rem] -right-[1.3rem] sm:-bottom-[1.55rem] sm:-right-[1.55rem]"
+                delay="1140ms"
+              />
+
+              {/* Layer name, the way a design tool labels a selection */}
+              <span
+                className="mono anim-tick absolute -top-4 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-crimson px-3 py-1 whitespace-nowrap text-bone sm:-top-5"
+                style={{ "--delay": "1220ms" }}
               >
-                <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
-                <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
-                <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
-                <path d="M4 22h16" />
-                <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
-                <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
-              </svg>
+                boubacar.bah
+              </span>
+
+              {/* The source is already cut out, so he stands free on the
+                  page. A pool of light behind him does the grounding that
+                  a card background would otherwise have to do. */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-2 top-[22%] bottom-[6%] rounded-[50%] bg-crimson/25 blur-[55px]"
+              />
+              <div className="relative aspect-[4/5] w-full">
+                <img
+                  src={bouba}
+                  alt="Boubacar Bah"
+                  width="440"
+                  height="566"
+                  className="portrait-fade h-full w-full object-contain object-bottom"
+                />
+              </div>
+
+              {/* Status readout */}
+              <span
+                className="mono anim-tick absolute -bottom-4 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full bg-ink px-3 py-1 whitespace-nowrap text-bone-dim ring-1 ring-ink-line sm:-bottom-5"
+                style={{ "--delay": "1300ms" }}
+              >
+                available for work
+              </span>
             </div>
-            <p>Projects</p>
           </div>
         </div>
       </div>
-      {/* right side */}
-      <div className="md:flex hidden w-1/2">
-        <img
-          src={blue}
-          alt="portfolio"
-          className="w-full h-96 object-contain"
-        />
-      </div>
+
+      <a
+        href="#about"
+        aria-label="Scroll to the About section"
+        className="anim-rise mx-auto mt-8 hidden w-fit items-center gap-2 text-bone-dim transition-colors hover:text-crimson md:flex"
+        style={{ "--delay": "1400ms" }}
+      >
+        <span className="mono">scroll</span>
+        <ArrowDown size={14} className="animate-bounce" />
+      </a>
     </section>
   );
 };
