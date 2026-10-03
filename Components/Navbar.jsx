@@ -90,7 +90,7 @@ export const Navbar = () => {
           href="#home"
           className="display text-lg tracking-tight text-bone transition-colors hover:text-crimson"
         >
-          bah<span className="text-crimson">.</span>dev
+          Bah<span className="text-crimson">.</span>Dev
         </a>
 
         {/* Desktop links */}

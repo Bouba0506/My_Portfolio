@@ -56,7 +56,7 @@ const Footer = () => (
             href="#home"
             className="display text-2xl text-bone transition-colors hover:text-crimson"
           >
-            bah<span className="text-crimson">.</span>dev
+            Bah<span className="text-crimson">.</span>Dev
           </a>
           <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-bone-dim">
             Front-end developer in Agadir, building fast and accessible

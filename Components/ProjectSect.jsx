@@ -5,6 +5,11 @@ import barber from "@assets/images/barber.jpg";
 import medcine from "@assets/images/medcine.jpg";
 import SectionHeading from "./SectionHeading";
 import { useInView, cx } from "@/hooks/useInView";
+import disco from "@assets/images/disco.jpg";
+import homepage from "@assets/images/homepage.png";
+import rentaldesign from "@assets/images/rentaldesign.jpeg";
+import ecole from "@assets/images/ecole.png";
+import systema from "@assets/images/systema.png";
 
 const projects = [
   {
@@ -34,6 +39,52 @@ const projects = [
     stack: ["Next.js", "Tailwind CSS"],
     repo: "https://github.com/Bouba0506/pharmacie",
   },
+  {
+    img: disco,
+    alt: "Ecommerce website",
+    title: "Ecommerce",
+    summary:
+      "A website for a local ecommerce store: a product catalogue, a search bar, and a checkout flow that stays readable on a phone.",
+    stack: ["Next.js", "Tailwind CSS"],
+    repo: "https://github.com/Bouba0506/Novatrend",
+  },
+  {
+    img: homepage,
+    alt: "Homepage design",
+    title: "Homepage",
+    summary:
+      "A modern homepage design for a fashion brand",
+    stack: ["React.js", "Tailwind CSS"],
+    repo: "#",
+  },
+  {
+    img: rentaldesign,
+    alt: "Rental design",
+    title: "Rental Design",
+    summary:
+      "A modern rental website design for a rental agency ",
+    stack: ["Next.js", "Tailwind CSS"],
+    repo: "#",
+  },
+  {
+    img: ecole,
+    alt: "School website",
+    title: "School Website",
+    summary:
+      "School Pro website for a teacher and student: a searchable database, a calendar, and a contact form.",
+    stack: ["Next.js", "Tailwind CSS"],
+    repo: "#PrivateRepo",
+  },
+  {
+    img: systema,
+    alt: "SystemaVending",
+    title: "Systema Vending",
+    summary:
+      "A modern vending machine design for a startup in Morocco with a focus on accessibility and usability.",
+    stack: ["React.js", "Tailwind CSS"],
+    repo: "#PrivateRepo",
+  },
+
 ];
 
 const ProjectCard = ({ project, index, inView }) => {
@@ -66,7 +117,7 @@ const ProjectCard = ({ project, index, inView }) => {
         ref={cardRef}
         onPointerMove={handleMove}
         onPointerLeave={handleLeave}
-        className="panel group h-full overflow-hidden rounded-3xl transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-crimson/45 hover:shadow-[0_30px_70px_-30px_rgba(237,11,46,0.5)]"
+        className="panel group w-96 h-full overflow-hidden rounded-3xl transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-crimson/45 hover:shadow-[0_30px_70px_-30px_rgba(237,11,46,0.5)]"
       >
         <div className="relative aspect-[16/10] overflow-hidden">
           <img
@@ -134,7 +185,7 @@ const ProjectSect = () => {
           lead="Three builds that show how I structure an interface, handle state, and keep a page fast. The code is open on GitHub."
         />
 
-        <div ref={ref} className="mt-16 grid gap-7 md:grid-cols-2">
+        <div ref={ref} className="mt-16  grid gap-10 md:grid-cols-3">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.title}
